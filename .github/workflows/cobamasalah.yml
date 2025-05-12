@@ -1,4 +1,4 @@
-name: Pipeline CI Rusak
+name: Pipeline CI
 
 on: [push, pull_request]
 
@@ -10,5 +10,5 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v3
 
-      - name: Run error command
-        run: salahperintah
+      - name: Run a sample command
+        run: echo "CI pipeline is running successfully."
