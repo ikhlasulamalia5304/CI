@@ -1,0 +1,19 @@
+name: Pipeline CI Rusak
+
+on: [push, pull_request]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Setup Python
+        uses: actions/setup-python@v4
+        with:
+          pythonn-version: '3.10'  # <--- Typo di sini (sengaja)
+
+      - name: Run Python program
+        run: python hello19.py
