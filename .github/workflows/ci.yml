@@ -1,32 +1,24 @@
-name: CI Pipeline
+name: Python CI
 
-# Event yang memicu pipeline berjalan
-on: [push, pull_request]
+on:
+  push:
+  pull_request:
 
 jobs:
-  build-and-run:
+  build:
     runs-on: ubuntu-latest
 
     steps:
-      # Mengambil seluruh isi repository
-      - name: Checkout Repository
-        uses: actions/checkout@v3
+    - name: Checkout repository
+      uses: actions/checkout@v3
 
-      # Setup lingkungan Python
-      - name: Setup Python
-        uses: actions/setup-python@v4
-        with:
-          python-version: '3.10'
+    - name: Setup Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: '3.10'
 
-      # Menginstall dependency dari requirements.txt (jika ada)
-      - name: Install Dependencies
-        run: |
-          if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
+    - name: Install dependencies
+      run: pip install -r requirements.txt || echo "No dependencies"
 
-      # Compile atau cek syntax Python
-      - name: Syntax Check
-        run: python -m py_compile hello.py
-
-      # Menjalankan program utama
-      - name: Run the Program
-        run: python hello.py
+    - name: Run Python Script
+      run: python program.py
